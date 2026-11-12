@@ -1,0 +1,32 @@
+from io import StringIO
+
+# Sample input data
+data = """Ravi,2500
+Kumar,3000
+Arun,2800
+Priya,invalid
+"""
+
+total = 0
+count = 0
+
+file = StringIO(data)
+
+for line in file:
+    try:
+        name, amount = line.strip().split(",")
+        amount = float(amount)
+
+        print(name, ":", amount)
+
+        total += amount
+        count += 1
+
+    except ValueError:
+        print("Invalid record:", line.strip())
+
+if count > 0:
+    print("Total Mess Bill:", total)
+    print("Average Bill:", total / count)
+
+file.close()
